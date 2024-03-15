@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Add EF core Dependency Injection
+builder.Services.AddDbContext<TripContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ContactContext")));
 
 var app = builder.Build();
 
