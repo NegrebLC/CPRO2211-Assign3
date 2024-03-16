@@ -1,0 +1,25 @@
+﻿@model CPRO2211_Assign3.Models.TripIndexViewModel
+
+@{
+    ViewData["Title"] = "Trip Details";
+}
+
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+    <div class="card">
+        <div class="card-header">
+            Trip to @Model.Destination
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Dates</h5>
+            <p class="card-text">@Model.StartDate.ToString("d") - @Model.EndDate.ToString("d")</p>
+
+            <h5 class="card-title">Accommodation</h5>
+            <p class="card-text">@Model.Accommodation</p>
+
+            <h5 class="card-title">Things to Do</h5>
+            <p class="card-text">@Model.CombinedThingsToDo</p>
+        </div>
+    </div>
+    <a href="@Url.Action("Index")" class="btn btn-primary mt-3">Back to List</a>
+</div>

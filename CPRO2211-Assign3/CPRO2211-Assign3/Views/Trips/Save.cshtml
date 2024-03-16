@@ -1,0 +1,27 @@
+﻿@model CPRO2211_Assign3.Models.Trip
+
+@{
+    ViewData["Title"] = "Confirm Save";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="SubmitSave" method="post">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <p>Destination: @Model.Destination</p>
+    </div>
+
+    @Html.HiddenFor(model => model.Destination)
+    @Html.HiddenFor(model => model.StartDate)
+    @Html.HiddenFor(model => model.EndDate)
+    @Html.HiddenFor(model => model.Accommodation)
+    @Html.HiddenFor(model => model.AccommodationPhone)
+    @Html.HiddenFor(model => model.AccommodationEmail)
+    @Html.HiddenFor(model => model.ThingToDo1)
+    @Html.HiddenFor(model => model.ThingToDo2)
+    @Html.HiddenFor(model => model.ThingToDo3)
+
+    <button type="submit" class="btn btn-primary">Confirm and Save</button>
+</form>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CPRO2211_Assign3.Models.TripIndexViewModel>
+
+@{
+    ViewData["Title"] = "Trip List";
+}
+
+<div class="container mt-3">
+    <h1>@ViewData["Title"]</h1>
+    <p class="lead">Here are the trips you have planned:</p>
+    <a href="@Url.Action("Create", "Trips")" class="btn btn-primary mb-3">Add New Trip</a>
+
+    @if (Model.Any())
+    {
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Destination</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Accommodation</th>
+                    <th>Things to Do</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Destination</td>
+                        <td>@item.StartDate.ToShortDateString()</td>
+                        <td>@item.EndDate.ToShortDateString()</td>
+                        <td>@item.Accommodation</td>
+                        <td>@item.CombinedThingsToDo</td>
+                        <td>
+                            <a href="@Url.Action("Details", "Trips", new { id = item.TripId })" class="btn btn-info btn-sm">Details</a>
+                            <a href="@Url.Action("Delete", "Trips", new { id = item.TripId })" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No trips to display.</p>
+    }
+</div>
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.SuccessMessage
+    </div>
+}
